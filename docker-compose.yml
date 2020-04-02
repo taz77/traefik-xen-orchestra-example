@@ -1,0 +1,10 @@
+version: '3'
+services:
+    orchestra:
+        restart: unless-stopped
+        image: ronivay/xen-orchestra
+        container_name: "${PROJECT_NAME}_xoa"
+        network_mode: bridge
+        labels:
+            - "traefik.http.routers.${PROJECT_NAME}_xoa.rule=Host(`xoa.${PROJECT_BASE_URL}`)"
+            - "traefik.http.services.${PROJECT_NAME}_xoa.loadbalancer.server.port=80"
